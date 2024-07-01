@@ -1,0 +1,9 @@
+OPTIMIZATION:
+  num_epochs: 17000
+  kl_factor: 1.e-7
+  lr: 8.e-3
+  save_file: './vae_decoder_net.pkl'
+NETWORK:
+  latent_dim: 2
+  encoder_hidden_dim: 600
+  decoder_hidden_dim: 600

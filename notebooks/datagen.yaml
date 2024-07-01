@@ -1,0 +1,24 @@
+SUPERSHAPE:
+  min_a: 5.e-2
+  max_a: 0.75
+  min_b: 5.e-2
+  max_b: 0.75
+  min_m: 0.5
+  max_m: 11.
+  min_n1: 0.5
+  max_n1: 10.
+  min_n2: 0.5
+  max_n2: 10.
+  min_n3: 0.5
+  max_n3: 10.
+  min_cx: 1.e-5
+  max_cx: 1.1e-5
+  min_cy: 1.e-5
+  max_cy: 1.1e-5
+  shape_seed: 27
+MESH:
+  nelx: 150
+  nely: 150
+DATASET:
+  num_samples: 100
+  dataset_num: 1

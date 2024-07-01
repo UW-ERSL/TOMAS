@@ -1,0 +1,5 @@
+Python version: 3.10.9 
+PyTorch version: 2.1.2
+NumPy version: 1.26.3
+SciPy version: 1.10.0
+Pandas version: 2.2.0
