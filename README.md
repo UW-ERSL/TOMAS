@@ -1,4 +1,4 @@
-# [TOMAS: Topology Optimization of Multiscale Fluid Devices using Variational Autoencoders and Super-Shapes]([https://link.springer.com/article/10.1007/s00158-024-03835-6])
+# [TOMAS: Topology Optimization of Multiscale Fluid Devices using Variational Autoencoders and Super-Shapes](https://link.springer.com/article/10.1007/s00158-024-03835-6)
 
 [Rahul Kumar Padhy](https://sites.google.com/view/rahulkp/home), [Krishnan Suresh](https://directory.engr.wisc.edu/me/faculty/suresh_krishnan),  [Aaditya Chandrasekhar](https://www.aadityacs.com/)
 
