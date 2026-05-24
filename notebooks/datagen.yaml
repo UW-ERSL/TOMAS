@@ -3,8 +3,8 @@ SUPERSHAPE:
   max_a: 0.75
   min_b: 5.e-2
   max_b: 0.75
-  min_m: 0.5
-  max_m: 11.
+  min_m: 3.0
+  max_m: 6.0
   min_n1: 0.5
   max_n1: 10.
   min_n2: 0.5
@@ -20,5 +20,5 @@ MESH:
   nelx: 150
   nely: 150
 DATASET:
-  num_samples: 100
-  dataset_num: 1
+  num_samples: 7000
+  dataset_num: 4

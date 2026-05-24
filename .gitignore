@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+
+# Virtual envs
+.venv/
+.venv-*/
+env/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Logs
+logs/*.log
+logs/*.err
+*.log
+
+# Temp / scratch
+tmp/
+*.tmp
+*.bak
+
+# Large super-shape raster datasets (regenerate via scripts/run_offline_dataset.py;
+# see dataset/README.md for instructions). Each ~1.2 GB.
+dataset/mstr_images_*.mat
+
+# Post-hoc validation intermediate files (Tier 2.4; regenerable). ~200 MB each.
+dataset/_posthoc_*
+
+# Historical reproduction backups (kept locally; only the final WSL v9 result
+# and Windows v9 reference are tracked). Each ~50-200 MB.
+output/paper_reproduction_v2/
+output/paper_reproduction_v3_soft/
+output/paper_reproduction_v3_strong/
+output/paper_reproduction_v4/
+output/paper_reproduction_v5/
+output/paper_reproduction_v6/
+output/paper_reproduction_v7/
+output/paper_reproduction_v8/
+
+# Sanity / scratch output dirs
+output/wsl_sanity_*/
+output/paper/
+
+# PDFs in tmp/ (not source-of-truth)
+tmp/pdfs/

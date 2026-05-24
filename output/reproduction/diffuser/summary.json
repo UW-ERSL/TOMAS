@@ -1,0 +1,9 @@
+{
+  "config": "C:\\Users\\Bingxiao Du\\Documents\\TOMAS\\notebooks\\config_diffuser.yaml",
+  "example": "DIFFUSER",
+  "epochs": 301,
+  "elapsed_seconds": 150.90430599998217,
+  "final_fluid_loss": 17.510152519801427,
+  "final_contact": 59.51283760942705,
+  "final_constraint": 0.008119373176215805
+}

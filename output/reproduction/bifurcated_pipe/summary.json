@@ -1,0 +1,9 @@
+{
+  "config": "C:\\Users\\Bingxiao Du\\Documents\\TOMAS\\notebooks\\config_biffurcated_pipe.yaml",
+  "example": "BIFFURCATED_PIPE",
+  "epochs": 351,
+  "elapsed_seconds": 235.55560020002304,
+  "final_fluid_loss": 21.609912243267296,
+  "final_contact": 75.15541898676653,
+  "final_constraint": -0.0020722531568870828
+}

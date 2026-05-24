@@ -1,0 +1,10 @@
+{
+  "config": "notebooks/config_bent_pipe.yaml",
+  "selected_mstr": "/mnt/c/Users/Bingxiao Du/Documents/TOMAS/output/paper_reproduction/ideal_microstructure/selected.json",
+  "example": "BENT_PIPE",
+  "case": "fixed_microstructure_only_theta",
+  "epochs": 301,
+  "elapsed_seconds": 585.706152493,
+  "final_dissipated_power": 16.06718321723446,
+  "paper_reported": 15.1
+}

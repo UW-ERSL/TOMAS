@@ -1,0 +1,25 @@
+{
+  "config": "C:\\Users\\Bingxiao Du\\Documents\\TOMAS\\notebooks\\config_bent_pipe_perim.yaml",
+  "vae_version": "v6",
+  "nn_seed": 77,
+  "example": "BENT_PIPE",
+  "epochs": 600,
+  "elapsed_seconds": 3262.729300900013,
+  "final_fluid_loss_decoder": 13.112965222619511,
+  "final_contact_decoder": 79.1617132113434,
+  "shapely_contact_posthoc": 71.68737979375945,
+  "final_constraint": -0.04586752822490947,
+  "min_solid_vol_per_cell": 0.05,
+  "min_area_penalty_weight": 5.0,
+  "final_min_area_penalty": 2.3555706904365868e-06,
+  "final_min_area_violation_cells": 70,
+  "total_cells": 1200,
+  "truth_validation": {
+    "J_truth_matlab_fe": 12.682483998455108,
+    "J_decoder_recheck": 13.112965222619511,
+    "J_decoder_summary": 13.112965222619511,
+    "C00_decoder_vs_truth_mean_rel_err": 0.157869197427077,
+    "C11_decoder_vs_truth_mean_rel_err": 0.147908046344372,
+    "num_cells": 1200
+  }
+}

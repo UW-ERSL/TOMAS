@@ -1,0 +1,22 @@
+{
+  "seed": 11,
+  "basis": "feasible",
+  "summary": {
+    "config": "/tmp/pareto_cfg_ycepz_4e/config_diffuser_a80.yaml",
+    "vae_version": "v6",
+    "nn_seed": 11,
+    "example": "DIFFUSER",
+    "epochs": 600,
+    "elapsed_seconds": 111.83019000900003,
+    "final_fluid_loss_decoder": 74.67618901830065,
+    "final_contact_decoder": 76.89964261611553,
+    "shapely_contact_posthoc": 74.17463358654318,
+    "final_constraint": 0.03875446729855592,
+    "min_solid_vol_per_cell": 0.05,
+    "min_area_penalty_weight": 5.0,
+    "final_min_area_penalty": 1.3942879724203011e-05,
+    "final_min_area_violation_cells": 20,
+    "total_cells": 225,
+    "seed": 11
+  }
+}

@@ -17,29 +17,37 @@ FOURIER_MAP_PARAMS:
 LOSS:
   alpha: 0.0
   alpha0: 1.0
-  del_alpha: 0.07
-  method: PENALTY
+  del_alpha: 0.10
+  method: AUG_LAG
+  lambda_init: 0.0
 MATERIAL_CONSTANTS:
   kinematic_viscosity: 1.0
 MESH:
   nelx: 20
   nely: 60
 NEURAL_NETWORK_PARAMS:
-  num_layers: 2
-  num_neurons_per_layer: 20
+  num_layers: 4
+  num_neurons_per_layer: 50
   output_dim: 3
 OPTIMIZATION:
   desired_perimeter: 75.69
   desired_vol_frac: 0.75
   constraint_type: PERIMETER
   grad_clip_activation: GRAD_CLIP_ON
-  grad_clip_norm: 2.e-1
+  grad_clip_norm: 5.e-2
   init_objective: 1.0
   learning_rate: 4.e-3
   method: ADAM
   num_constraints: 1
-  num_epochs: 301
-  plot_interval: 20
+  num_epochs: 600
+  plot_interval: 40
+  min_solid_vol_per_cell: 0.05
+  min_area_penalty_weight: 5.0
+  lr_schedule: cosine
+  lr_min: 1.e-4
+  restart_perturb_epochs: [200, 400]
+  restart_perturb_sigma: 0.01
+  j0_ema_alpha: 0.95
 PENALTY_CONSTANTS:
   max_penalty_constant: 1.0
   min_penalty_constant: 0.01

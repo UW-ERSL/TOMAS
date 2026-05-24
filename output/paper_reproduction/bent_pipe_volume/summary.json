@@ -1,0 +1,17 @@
+{
+  "config": "/mnt/c/Users/Bingxiao Du/Documents/TOMAS/notebooks/config_bent_pipe_volume.yaml",
+  "vae_version": "v6",
+  "nn_seed": 77,
+  "example": "BENT_PIPE",
+  "epochs": 600,
+  "elapsed_seconds": 1244.146832928,
+  "final_fluid_loss_decoder": 15.219457977558495,
+  "final_contact_decoder": 300.06795533136886,
+  "shapely_contact_posthoc": 122.477927319777,
+  "final_constraint": -7.550592374316878e-05,
+  "min_solid_vol_per_cell": 0.05,
+  "min_area_penalty_weight": 5.0,
+  "final_min_area_penalty": 5.09028823060517e-06,
+  "final_min_area_violation_cells": 180,
+  "total_cells": 1200
+}

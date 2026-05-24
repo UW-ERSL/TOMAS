@@ -1,0 +1,17 @@
+{
+  "config": "/tmp/pareto_cfg_ycepz_4e/config_diffuser_a60.yaml",
+  "vae_version": "v6",
+  "nn_seed": 11,
+  "example": "DIFFUSER",
+  "epochs": 600,
+  "elapsed_seconds": 111.99889773099949,
+  "final_fluid_loss_decoder": 55.41569734773242,
+  "final_contact_decoder": 58.89197886190385,
+  "shapely_contact_posthoc": 58.150619981939734,
+  "final_constraint": 0.01846701896826919,
+  "min_solid_vol_per_cell": 0.05,
+  "min_area_penalty_weight": 5.0,
+  "final_min_area_penalty": 9.51561344475418e-10,
+  "final_min_area_violation_cells": 1,
+  "total_cells": 225
+}

@@ -1,0 +1,48 @@
+BOUNDARY_CONDITIONS:
+  char_velocity: 1.0
+  example: DIFFUSER
+  fixture_const: 1000000000000000.0
+BOUNDING_BOX:
+  x_max: 2.0
+  x_min: 0.0
+  y_max: 2.0
+  y_min: 0.0
+FOURIER_MAP_PARAMS:
+  fourier_map_activation: FOURIER_ON
+  max_radius: 750.0
+  min_radius: 15.0
+  num_fourier_terms: 100
+  symmetry_activation_x_axis: SYM_X_AXIS_ON
+  symmetry_activation_y_axis: SYM_Y_AXIS_OFF
+LOSS:
+  alpha: 0.0
+  alpha0: 1.
+  del_alpha: 0.085
+  method: PENALTY
+MATERIAL_CONSTANTS:
+  kinematic_viscosity: 1.0
+MESH:
+  nelx: 15
+  nely: 15
+NEURAL_NETWORK_PARAMS:
+  num_layers: 2
+  num_neurons_per_layer: 20
+  output_dim: 3
+OPTIMIZATION:
+  desired_perimeter: 60.
+  desired_vol_frac: 0.5
+  constraint_type: PERIMETER
+  grad_clip_activation: GRAD_CLIP_ON
+  grad_clip_norm: 2.e-1
+  init_objective: 1.0
+  learning_rate: 2.e-3
+  method: ADAM
+  num_constraints: 1
+  num_epochs: 301
+  plot_interval: 20
+PENALTY_CONSTANTS:
+  max_penalty_constant: 1.0
+  min_penalty_constant: 1.e-2
+  penalty_constant_slope: 2.e-2
+PLOT:
+  resolution: 1.0

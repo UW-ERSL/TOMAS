@@ -1,0 +1,18 @@
+{
+  "config": "notebooks/config_bent_pipe.yaml",
+  "selected_mstr": "C:\\Users\\Bingxiao Du\\Documents\\TOMAS\\output\\paper_reproduction\\ideal_microstructure\\selected.json",
+  "example": "BENT_PIPE",
+  "case": "fixed_microstructure_only_theta",
+  "epochs": 301,
+  "elapsed_seconds": 1906.892310300027,
+  "final_dissipated_power": 16.067182516638937,
+  "paper_reported": 15.1,
+  "truth_validation": {
+    "J_truth_matlab_fe": 41.962613386482545,
+    "J_decoder_recheck": 16.067550486532568,
+    "J_decoder_summary": null,
+    "C00_decoder_vs_truth_mean_rel_err": 2.542805123152894,
+    "C11_decoder_vs_truth_mean_rel_err": 1.2720199982039389,
+    "num_cells": 1200
+  }
+}

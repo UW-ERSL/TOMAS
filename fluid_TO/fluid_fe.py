@@ -8,7 +8,105 @@ import utils
 import torch
 import matplotlib.pyplot as plt
 import fluid_material
-from torch_sparse_solve import solve
+try:
+  from torch_sparse_solve import solve
+  _USING_SCIPY_SPARSE_SOLVE = False
+except ModuleNotFoundError:
+  import scipy.sparse as sp
+  import scipy.sparse.linalg as spla
+  _USING_SCIPY_SPARSE_SOLVE = True
+
+  class _SparseSolve(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, matrix, rhs):
+      matrix = matrix.coalesce()
+      indices = matrix.indices()
+      values = matrix.values()
+      shape = matrix.shape
+
+      if len(shape) == 2:
+        batch_size, num_rows, num_cols = 1, shape[0], shape[1]
+        batch = torch.zeros(indices.shape[1], dtype=torch.long,
+                            device=indices.device)
+        rows = indices[0]
+        cols = indices[1]
+        rhs_work = rhs.unsqueeze(0) if rhs.ndim == 2 else rhs
+      else:
+        batch_size, num_rows, num_cols = shape
+        batch = indices[0]
+        rows = indices[1]
+        cols = indices[2]
+        rhs_work = rhs
+
+      if num_rows != num_cols:
+        raise ValueError("Sparse solve expects square matrices.")
+
+      outputs = []
+      lu_factors = []
+      values_cpu = values.detach().cpu().numpy()
+      rows_cpu = rows.detach().cpu().numpy()
+      cols_cpu = cols.detach().cpu().numpy()
+      batch_cpu = batch.detach().cpu().numpy()
+      rhs_cpu = rhs_work.detach().cpu().numpy()
+
+      for batch_idx in range(batch_size):
+        mask = batch_cpu == batch_idx
+        a_mat = sp.coo_matrix((values_cpu[mask],
+                               (rows_cpu[mask], cols_cpu[mask])),
+                              shape=(num_rows, num_cols)).tocsc()
+        lu = spla.splu(a_mat)
+        outputs.append(lu.solve(rhs_cpu[batch_idx]))
+        lu_factors.append(lu)
+
+      solution = torch.as_tensor(np.stack(outputs),
+                                 dtype=rhs_work.dtype,
+                                 device=rhs_work.device)
+      ctx.save_for_backward(indices, solution)
+      ctx.shape = shape
+      ctx.lu_factors = lu_factors
+      ctx.rhs_was_unbatched = rhs.ndim == 2
+      return solution.squeeze(0) if ctx.rhs_was_unbatched else solution
+
+    @staticmethod
+    def backward(ctx, grad_output):
+      indices, solution = ctx.saved_tensors
+      shape = ctx.shape
+      grad_work = grad_output.unsqueeze(0) if ctx.rhs_was_unbatched else grad_output
+
+      if len(shape) == 2:
+        batch_size = 1
+        batch = torch.zeros(indices.shape[1], dtype=torch.long,
+                            device=indices.device)
+        rows = indices[0]
+        cols = indices[1]
+        matrix_size = shape
+      else:
+        batch_size = shape[0]
+        batch = indices[0]
+        rows = indices[1]
+        cols = indices[2]
+        matrix_size = shape
+
+      adjoints = []
+      grad_cpu = grad_work.detach().cpu().numpy()
+      for batch_idx in range(batch_size):
+        adjoints.append(ctx.lu_factors[batch_idx].solve(grad_cpu[batch_idx],
+                                                        trans='T'))
+
+      adjoint = torch.as_tensor(np.stack(adjoints),
+                                dtype=grad_work.dtype,
+                                device=grad_work.device)
+      grad_values = -torch.sum(adjoint[batch, rows] * solution[batch, cols],
+                               dim=-1)
+      grad_matrix = torch.sparse_coo_tensor(indices, grad_values, matrix_size)
+      grad_rhs = adjoint.squeeze(0) if ctx.rhs_was_unbatched else adjoint
+      return grad_matrix, grad_rhs
+
+  def solve(matrix, rhs):
+    """Differentiable SciPy fallback for Windows without torch_sparse_solve."""
+    if matrix.is_sparse:
+      return _SparseSolve.apply(matrix, rhs)
+    return torch.linalg.solve(matrix, rhs)
 
 
 from fluid_mesher import Q2Q1Mesh
@@ -18,6 +116,8 @@ class FluidSolver:
 
     self.mesh = mesh
     self.bc=bc
+    if _USING_SCIPY_SPARSE_SOLVE and fixture_const > 1e10:
+      fixture_const = 1e10
     
     self.velocity_pressure_field=np.zeros((self.mesh.num_total_dofs))
     V = np.zeros((self.mesh.num_total_dofs, self.mesh.num_total_dofs));

@@ -34,7 +34,7 @@ def constraint_function(constraint_type: int, field: torch.DoubleTensor,
       fluid_vol_cons: Tensor of size (1,) representing the fluid volume constraint. 
     """
     fluid_vol_frac = 1. - solid_vol_frac
-    fluid_vol_cons = (torch.mean(fluid_vol_frac)/(desired_fluid_vol_frac)) - 1.
+    fluid_vol_cons = (torch.mean(fluid_vol_frac)/(desired_vol_frac)) - 1.
     return fluid_vol_cons
   
   def compute_perimeter_constraint(perimeter: torch.DoubleTensor)->torch.Tensor:
@@ -55,4 +55,30 @@ def constraint_function(constraint_type: int, field: torch.DoubleTensor,
     field_cons = compute_volume_constraint(field)
   elif(constraint_type == ConstraintType.PERIMETER):
     field_cons = compute_perimeter_constraint(field)
-  return field_cons 
+  return field_cons
+
+
+def min_area_penalty(solid_vol_frac: torch.DoubleTensor,
+                     min_solid_vol: float) -> torch.Tensor:
+  """Soft per-cell penalty implementing TOMAS paper §3.7's "minimum area
+  constraint on each microstructure".
+
+  Pushes the optimizer away from solutions where individual cells degenerate
+  to nearly empty super-shapes (and the decoder's small perim/area is exploited
+  to satisfy global constraints).
+
+  Args:
+    solid_vol_frac: Tensor of shape (num_elems,) — per-cell solid volume
+      fraction reconstructed by the VAE decoder.
+    min_solid_vol: Lower bound that each cell should satisfy. Set to 0 to
+      disable.
+
+  Returns:
+    Mean of squared violations across cells. Always ≥ 0; equals 0 when every
+    cell satisfies solid_vol_frac ≥ min_solid_vol.
+  """
+  if min_solid_vol <= 0.0:
+    return torch.zeros(1, dtype=solid_vol_frac.dtype,
+                       device=solid_vol_frac.device).squeeze()
+  violation = torch.clamp(min_solid_vol - solid_vol_frac, min=0.0)
+  return (violation ** 2).mean() 

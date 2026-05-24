@@ -1,0 +1,25 @@
+{
+  "config": "C:\\Users\\Bingxiao Du\\Documents\\TOMAS\\notebooks\\config_diffuser_a60.yaml",
+  "vae_version": "v6",
+  "nn_seed": 77,
+  "example": "DIFFUSER",
+  "epochs": 600,
+  "elapsed_seconds": 168.08797510003205,
+  "final_fluid_loss_decoder": 62.7199477448869,
+  "final_contact_decoder": 59.29245496248947,
+  "shapely_contact_posthoc": 57.69649620686615,
+  "final_constraint": 0.011792417291842106,
+  "min_solid_vol_per_cell": 0.05,
+  "min_area_penalty_weight": 5.0,
+  "final_min_area_penalty": 2.8069386408037485e-06,
+  "final_min_area_violation_cells": 12,
+  "total_cells": 225,
+  "truth_validation": {
+    "J_truth_matlab_fe": 63.54732965781805,
+    "J_decoder_recheck": 62.7199477448869,
+    "J_decoder_summary": 62.7199477448869,
+    "C00_decoder_vs_truth_mean_rel_err": 0.1471361597006156,
+    "C11_decoder_vs_truth_mean_rel_err": 0.13611059279815282,
+    "num_cells": 225
+  }
+}

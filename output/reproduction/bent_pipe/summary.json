@@ -1,0 +1,9 @@
+{
+  "config": "C:\\Users\\Bingxiao Du\\Documents\\TOMAS\\notebooks\\config_bent_pipe.yaml",
+  "example": "BENT_PIPE",
+  "epochs": 301,
+  "elapsed_seconds": 2103.1333689999883,
+  "final_fluid_loss": 6.2469703603852285,
+  "final_contact": 76.27690450999987,
+  "final_constraint": -0.0077540561500841765
+}

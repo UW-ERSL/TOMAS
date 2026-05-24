@@ -1,0 +1,17 @@
+{
+  "config": "C:\\Users\\Bingxiao Du\\AppData\\Local\\Temp\\pareto_cfg_1vdo0spp\\config_diffuser_a50.yaml",
+  "vae_version": "v6",
+  "nn_seed": 42,
+  "example": "DIFFUSER",
+  "epochs": 600,
+  "elapsed_seconds": 287.0150213999441,
+  "final_fluid_loss_decoder": 57.30962108283357,
+  "final_contact_decoder": 49.407643279297105,
+  "shapely_contact_posthoc": 45.613059279093676,
+  "final_constraint": 0.011847134414057936,
+  "min_solid_vol_per_cell": 0.05,
+  "min_area_penalty_weight": 5.0,
+  "final_min_area_penalty": 2.138738682458967e-06,
+  "final_min_area_violation_cells": 7,
+  "total_cells": 225
+}
